@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Balance</title>
+        <style>
+            body {font-family: Arial, Helvetica, sans-serif;}
+            form {border: 3px solid #f1f1f1;}
+
+            input[type=text] {
+                width: 100%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                display: inline-block;
+                border: 1px solid #ccc;
+                box-sizing: border-box;
+            }
+            #button1{
+                background-color: #4CAF50;
+                color: white;
+                padding: 14px 20px;
+                margin: 8px 0;
+                border: none;
+                cursor: pointer;
+                width: 100%;
+            }
+            #button1:hover{
+                opacity: 0.8;
+            }
+            #button2{
+                background-color: #4CAF50;
+                color: white;
+                padding: 14px 20px;
+                margin: 8px 0;
+                border: none;
+                cursor: pointer;
+                width: 100%;
+            }
+            #button2:hover{
+                opacity: 0.8;
+            }
+
+            #button  {
+                background-color: #4CAF50;
+                color: white;
+                padding: 14px 20px;
+                margin: 8px 0;
+                border: none;
+                cursor: pointer;
+                width: 100%;
+            }
+
+            #button:hover {
+                opacity: 0.8;
+            }
+
+            .cancelbtn {
+                width: auto;
+                padding: 10px 18px;
+                background-color: #f44336;
+            }
+
+            .imgcontainer {
+                text-align: center;
+                margin: 24px 0 12px 0;
+
+            }
+
+            img.avatar {
+                width:fit-content;
+                border-radius: 50%;
+            }
+
+            .container {
+                padding: 16px;
+            }
+
+            span.psw {
+                float: right;
+                padding-top: 16px;
+            }
+            .main{
+                margin: auto;
+                margin-left: 10px;
+                margin-right: 30%;
+                height: 100%;
+                width: 50%;
+
+            }
+            /* Change styles for span and cancel button on extra small screens */
+            @media screen and (max-width: 300px) {
+                span.psw {
+                    display: block;
+                    float: none;
+                }
+                .cancelbtn {
+                    width: 100%;
+                }
+            }
+
+
+        </style>
+    </head>
+    <body>
+
+
+        <form action="TokenServlet">
+            <div class="main">
+                <div class="imgcontainer">
+                    <img alt="logo" src="images\Logo.jpg" class="avatar">
+                </div>
+
+                <div class="container">
+                    <label for="uname"><b>National Code</b></label>
+                    <input id="NationalCodePosition" type="text" placeholder="National Code" name="nid" required>
+
+                    <label ><b>Account Number</b></label>
+                    <input id="AccountNumberPosition" type="text" placeholder="Account Number" name="deposit" required>
+
+                    <label for="TokenType"><b>Token Type: </b></label><br><br>
+                    <input id="checkedC" type="radio"  name="TokenType" value="Client_Credential"   onclick="Checkradiobutton()" checked> Client Credential<br><br>
+                    <input id="checkedA" type="radio" name="TokenType" value="Authorization_Code" onclick="Checkradiobutton()"> Authorization Code<br><br>
+                    <label for="ServiceType"><b>Service Type: </b></label><br><br>
+                    <input id="BalanceSelect" type="radio" name="ServiceType" value="Balance" checked>Show Balance<br><br>
+                    <input id="StatementSelect" type="radio" name="ServiceType" value="Statement" >Show Statement<br><br>
+                    <input id="button1" type="submit" name="Get Accsess" value="get Access" >
+                    <div>
+
+                    </div>
+                </div>
+            </div>
+        </form>
+        <script>
+            function Checkradiobutton()
+            {
+                if (document.getElementById('checkedA').checked) {
+                    document.getElementById('NationalCodePosition').disabled = true;
+                    document.getElementById('AccountNumberPosition').disabled = true;
+
+
+
+                }
+                if (document.getElementById('checkedC').checked)
+                {
+                    document.getElementById('NationalCodePosition').disabled = false;
+                    document.getElementById('AccountNumberPosition').disabled = false;
+                }
+
+
+
+            }
+        </script>
+    </body>
+</html>

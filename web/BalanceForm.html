@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <style>
+        body {font-family: Arial, Helvetica, sans-serif;}
+        form {border: 3px solid white;}
+
+        .imgcontainer {
+            text-align: center;
+            margin: 24px 0 12px 0;
+
+        }
+
+        img.avatar {
+            width:fit-content;
+            border-radius: 50%;
+        }
+
+        .container {
+            padding: 16px;
+            font-size: medium;
+
+        }
+
+        span.psw {
+            float: right;
+            padding-top: 16px;
+        }
+        .main{
+            padding-top: 60px;
+            margin: auto;
+            margin-left: 10px;
+            margin-right: 30%;
+            height: 300%;
+            width: 50%; 
+
+        }
+        .col{
+            margin-top: 12px;
+            margin-bottom: 12px;
+            padding: 10px;
+            background-color:darkseagreen;
+            font-size: large;
+
+            color: #f1f1f1;
+
+        }
+        .customers {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .customers td, #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        .customers tr:nth-child(even){background-color: #f2f2f2;}
+
+        .customers tr:hover {background-color: #ddd;}
+
+        .customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            padding-left: 10px;
+            text-align: left;
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        /* Change styles for span and cancel button on extra small screens */
+        @media screen and (max-width: 300px) {
+            span.psw {
+                display: block;
+                float: none;
+            }
+            .cancelbtn {
+                width: 100%;
+            }
+        }
+
+    </style>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <form >
+        <div class="main">
+            <div class="imgcontainer">
+                <img alt="logo" src="images\Logo.jpg" class="avatar">
+            </div>
+
+            <div class="container">
+                <table class="customers" id="AccountTable">
+                    <tr>
+                        <th>Account Number</th>
+                        <th>Balance</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </form>
+    <script>
+        function getQueryVariable(variable)
+        {
+            var query = window.location.search.substring(1);
+            var vars = query.split("&");
+
+            var returnArray = new Array();
+            for (var i = 0; i < vars.length; i++) {
+                var pair = vars[i].split("=");
+                if (pair[0] === variable) {
+                    returnArray.push(pair[1]);
+                }
+            }
+            return returnArray;
+        }
+
+        function addCommas(nStr) {
+            nStr += '';
+            var x = nStr.split('.');
+            var x1 = x[0];
+            var x2 = x.length > 1 ? '.' + x[1] : '';
+            var rgx = /(\d+)(\d{3})/;
+            while (rgx.test(x1)) {
+                x1 = x1.replace(rgx, '$1' + ',' + '$2');
+            }
+            return x1 + x2;
+        }
+
+        var T =  getQueryVariable("Token");
+        var N = getQueryVariable("number");
+        var B = getQueryVariable("balance");
+        var S=getQueryVariable("shaba");
+        var BCommas = new Array();
+        for (i = 0; i < B.length; i++) {
+            BCommas.push(addCommas(B[i]));
+        }
+
+
+        var table = document.getElementById("AccountTable");
+
+
+        for (i = 0; i < N.length; i++) {
+            var tr = document.createElement('TR');
+            var td1 = document.createElement('TD');
+            var td2 = document.createElement('TD');;
+            td1.appendChild(document.createTextNode(N[i]));
+            td2.appendChild(document.createTextNode(BCommas[i]+" ريال"));
+            tr.appendChild(td1);
+            tr.appendChild(td2);
+            table.appendChild(tr);
+        }
+
+
+    </script>
+</body>
+</html>
